@@ -38,7 +38,7 @@ object KawaiiBot {
     @Throws(LoginException::class, IOException::class)
     @JvmStatic
     fun main(args: Array<String>) {
-        if (args.isNotEmpty() && args[0].equals("--sharded", ignoreCase = true)) {
+        if (args.isNotEmpty() && args[0].contains("sharded")) {
             LOG.info("Running in production mode!")
             config.load(FileInputStream("config.properties"))
         } else {
