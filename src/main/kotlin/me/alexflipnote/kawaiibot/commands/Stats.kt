@@ -24,9 +24,9 @@ class Stats : ICommand {
         val deadShards = KawaiiBot.shardManager.shards.filterNot { shard -> shard.status == JDA.Status.CONNECTED }
         val onlineShards = KawaiiBot.shardManager.shardsTotal - deadShards.size
 
-        val secondsSinceBoot = (KawaiiBot.uptime / 1000).toDouble()
-        val commandsPerSecond = (KawaiiBot.pornUsage + KawaiiBot.otherCommandUsage) / secondsSinceBoot
-        val formattedCPS = dpFormatter.format(commandsPerSecond)
+        val minutesSinceBoot = (KawaiiBot.uptime / 60000).toDouble()
+        val commandsPerMinutes = (KawaiiBot.pornUsage + KawaiiBot.otherCommandUsage) / minutesSinceBoot
+        val formattedCPM = dpFormatter.format(commandsPerMinute)
         val totalCommands = KawaiiBot.otherCommandUsage + KawaiiBot.pornUsage
         val pornCommandsPercentage = (KawaiiBot.pornUsage * 100 / totalCommands * 100) / 100
         val otherCommandsPercentage = 100 - pornCommandsPercentage
@@ -41,9 +41,9 @@ class Stats : ICommand {
         sb.append("\n\nBOT STATISTICS\n")
         sb.append("• Guilds        :: ${KawaiiBot.shardManager.guildCache.size()}\n")
         sb.append("• Users         :: ${KawaiiBot.shardManager.userCache.size()}\n")
-        sb.append("• Porn Cmds     :: ${KawaiiBot.pornUsage} (${pornCommandsPercentage}%)\n")
+        sb.append("• Porn Cmds     :: ${KawaiiBot.pornUsage} (${pornCommandsPercentage}%) (IF THIS IS NOT 0 PANIC)\n")
         sb.append("• Normal Cmds   :: ${KawaiiBot.otherCommandUsage} (${otherCommandsPercentage}%)\n")
-        sb.append("  • Per Second  :: $formattedCPS\n\n")
+        sb.append("  • Per Minute  :: $formattedCPM\n\n")
         sb.append("• Shards Online :: $onlineShards/$shardCount\n")
 
         if (deadShards.isNotEmpty()) {
