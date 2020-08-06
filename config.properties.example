@@ -1,4 +1,13 @@
-token=beepboop
+# Discord bot token (highly sensitive, DO NOT COMMIT).
+token=asdfadfasf
+
+# Global prefix for commands (i.e.: +hug @FatherServo).
 prefix=+
-api_url=http://api
+
+# External API url, highly coupled with AlexFlipnote's API.
+# Commands that implements AbstractAPICommand use it.
+api_url=http://api.alexflipnote.dev
+
+# Undocumented/Unused, didn't find any references in project
+# for this property.
 api_token=nevergonnagivethis
